@@ -10,6 +10,18 @@ It provides:
 - Internal root cause preservation with `Unwrap`
 - Compatibility with `errors.Is` and `errors.As`
 
+## Installation
+
+```sh
+go get github.com/wachayathorn/go-errcode
+```
+
+Import the package:
+
+```go
+import "github.com/wachayathorn/go-errcode"
+```
+
 ## Core Types
 
 ```go
@@ -213,6 +225,14 @@ func (e *AppError) Unwrap() error {
 - Use `errors.As` in HTTP handlers to map errors to responses.
 - Use `errors.Is` when checking error categories.
 - Do not mutate predefined global errors directly.
+
+## Testing
+
+Run the test suite:
+
+```sh
+go test ./...
+```
 
 ## Avoid
 
