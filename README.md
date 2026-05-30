@@ -187,6 +187,8 @@ func (e *AppError) Is(target error) bool {
 }
 ```
 
+**Note**: The `Is()` method matches errors by `ErrorCode` only. Two `AppError` instances with the same `ErrorCode` will match via `errors.Is()`, even if they have different `StatusCode` or `Message`. This design allows error category matching regardless of customization.
+
 Without this method, `errors.Is(err, errcode.NotFound)` would compare pointers. A new error created by `WithMessage` would not equal the global sentinel error.
 
 ## Root Cause Handling

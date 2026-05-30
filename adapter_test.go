@@ -116,4 +116,10 @@ func TestNilAppError(t *testing.T) {
 	if err.Unwrap() != nil {
 		t.Fatalf("expected nil Unwrap() to return nil, got %v", err.Unwrap())
 	}
+	if err.Status() != http.StatusInternalServerError {
+		t.Fatalf("expected nil Status() to return 500, got %d", err.Status())
+	}
+	if err.ErrCode() != string(CodeInternalServerError) {
+		t.Fatalf("expected nil ErrCode() to return INTERNAL_SERVER_ERROR, got %q", err.ErrCode())
+	}
 }

@@ -2,6 +2,7 @@ package errcode
 
 import (
 	"fmt"
+	"net/http"
 )
 
 type Code string
@@ -68,9 +69,15 @@ func (e *AppError) Is(target error) bool {
 }
 
 func (e *AppError) Status() int {
+	if e == nil {
+		return http.StatusInternalServerError
+	}
 	return e.StatusCode
 }
 
 func (e *AppError) ErrCode() string {
+	if e == nil {
+		return string(CodeInternalServerError)
+	}
 	return string(e.ErrorCode)
 }
